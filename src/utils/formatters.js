@@ -144,3 +144,90 @@ export const truncateText = (text, maxLength, suffix = '...') => {
 
   return text.substring(0, maxLength - suffix.length) + suffix;
 };
+
+/**
+ * Format a number with thousand separators (uncovered function)
+ * @param {number} value - The number to format
+ * @returns {string} Formatted number with commas
+ */
+export const formatNumberWithCommas = (value) => {
+  if (typeof value !== 'number' || isNaN(value)) {
+    return '0';
+  }
+  return value.toLocaleString();
+};
+
+/**
+ * Calculate expense statistics (uncovered function)
+ * @param {Array} expenses - Array of expense objects
+ * @returns {Object} Statistics object
+ */
+export const calculateExpenseStats = (expenses) => {
+  if (!expenses || expenses.length === 0) {
+    return {
+      totalExpenses: 0,
+      averageAmount: 0,
+      highestExpense: 0,
+      lowestExpense: 0
+    };
+  }
+
+  const amounts = expenses.map(expense => expense.amount);
+  const total = amounts.reduce((sum, amount) => sum + amount, 0);
+  
+  return {
+    totalExpenses: expenses.length,
+    averageAmount: total / expenses.length,
+    highestExpense: Math.max(...amounts),
+    lowestExpense: Math.min(...amounts)
+  };
+};
+
+/**
+ * Format expense category for display (uncovered function)
+ * @param {string} category - The category string
+ * @returns {string} Formatted category
+ */
+export const formatCategoryDisplay = (category) => {
+  if (!category || typeof category !== 'string') {
+    return 'Uncategorized';
+  }
+  return category.replace(/&/g, 'and').toUpperCase();
+};
+
+/**
+ * Generate expense report summary (uncovered function)
+ * @param {Array} expenses - Array of expense objects
+ * @param {string} period - Period type ('week', 'month', 'year')
+ * @returns {Object} Report summary
+ */
+export const generateExpenseReport = (expenses, period = 'month') => {
+  const now = new Date();
+  let startDate, endDate;
+  
+  switch (period) {
+    case 'week':
+      startDate = new Date(now.setDate(now.getDate() - 7));
+      endDate = new Date();
+      break;
+    case 'year':
+      startDate = new Date(now.getFullYear(), 0, 1);
+      endDate = new Date(now.getFullYear(), 11, 31);
+      break;
+    default: // month
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  }
+  
+  const filteredExpenses = expenses.filter(expense => {
+    const expenseDate = new Date(expense.date);
+    return expenseDate >= startDate && expenseDate <= endDate;
+  });
+  
+  return {
+    period,
+    startDate: formatDate(startDate),
+    endDate: formatDate(endDate),
+    ...calculateExpenseStats(filteredExpenses)
+  };
+};

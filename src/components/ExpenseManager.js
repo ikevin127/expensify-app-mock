@@ -14,6 +14,8 @@ const ExpenseManager = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [filterCategory, setFilterCategory] = useState('All');
+  const [sortOrder, setSortOrder] = useState('newest');
 
   useEffect(() => {
     loadExpenses();
@@ -67,6 +69,54 @@ const ExpenseManager = () => {
         { text: 'Delete', style: 'destructive', onPress: () => deleteExpense(expenseId) }
       ]
     );
+  };
+
+  // New uncovered functionality - filtering by category
+  const filterExpensesByCategory = (category) => {
+    if (category === 'All') {
+      return expenses;
+    }
+    return expenses.filter(expense => expense.category === category);
+  };
+
+  // New uncovered functionality - sorting expenses
+  const sortExpenses = (expenseList, order) => {
+    const sorted = [...expenseList];
+    if (order === 'newest') {
+      return sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (order === 'oldest') {
+      return sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (order === 'highest') {
+      return sorted.sort((a, b) => b.amount - a.amount);
+    } else if (order === 'lowest') {
+      return sorted.sort((a, b) => a.amount - b.amount);
+    }
+    return sorted;
+  };
+
+  // New uncovered functionality - export expenses
+  const exportExpensesToCSV = () => {
+    const headers = 'Title,Amount,Category,Date,Description\n';
+    const csvData = expenses.map(expense => 
+      `${expense.title},${expense.amount},${expense.category},${expense.date.toISOString()},${expense.description || ''}`
+    ).join('\n');
+    
+    const csvContent = headers + csvData;
+    console.log('CSV Export:', csvContent);
+    Alert.alert('Export Complete', 'Expenses exported to console');
+  };
+
+  // New uncovered functionality - calculate category totals
+  const getCategoryTotals = () => {
+    const categoryTotals = {};
+    expenses.forEach(expense => {
+      if (categoryTotals[expense.category]) {
+        categoryTotals[expense.category] += expense.amount;
+      } else {
+        categoryTotals[expense.category] = expense.amount;
+      }
+    });
+    return categoryTotals;
   };
 
   const renderExpenseItem = ({ item }) => (
