@@ -1,12 +1,22 @@
 coverage:
   paths:
-    - coverage/lcov.info # Path to your coverage file
-  acceptable: 50% # Minimum acceptable coverage
-  badge:
-    path: coverage.svg
+    - coverage/lcov.info
+  acceptable: 50%
+  if: true
+
+codeToTestRatio:
+  code:
+    - "src/**/*.js"
+    - "src/**/*.jsx"
+  test:
+    - "tests/**/*.js"
+    - "tests/**/*.test.js"
+    - "tests/**/*.spec.js"
+  acceptable: "1:1.2"
+  if: true
 
 diff:
-  acceptable: 5% # Acceptable coverage decrease
+  acceptable: 5%
 
 comment:
   if: is_pull_request
@@ -15,25 +25,20 @@ comment:
     ## 📊 Code Coverage Report
 
     | Metric | Value |
-    |--------|-------|
-    | **Total Coverage** | {{ .Coverage.Percent }}% |
-    {{ if .Diff }}| **Diff Coverage** | {{ .Diff.Percent }}% |{{ end }}
-    | **Acceptable** | {{ .CoverageAcceptable }}% |
+    |-----------|-------|
+    | **Coverage** | {{ .Coverage.Percentage }}% |
+    | **Code Lines** | {{ .Coverage.Total }} |
+    | **Covered Lines** | {{ .Coverage.Covered }} |
+    {{- if .CodeToTestRatio }}
+    | **Code to Test Ratio** | {{ .CodeToTestRatio.Ratio }} |
+    {{- end }}
 
-    {{ if lt .Coverage.Percent .CoverageAcceptable }}
-    ⚠️ **Coverage is below acceptable threshold**
-    {{ else }}
-    ✅ **Coverage meets requirements**
-    {{ end }}
-
-    {{ if .Changed }}
-    ### 📁 Changed Files Coverage
-    {{ range .Changed }}
-    - `{{ .File }}`: {{ .Percent }}%
-    {{ end }}
-    {{ end }}
+    {{- if .Coverage.Diff }}
+    ### 📈 Coverage Changes
+    {{ .Coverage.Diff }}
+    {{- end }}
 
 report:
-  if: env.GITHUB_REF == 'refs/heads/main'
+  if: always
   datastores:
     - artifact://coverage-report

@@ -35,4 +35,4 @@ jobs:
         uses: k1LoW/octocov-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-file: .octocov.yml
+          config: .octocov.yml
