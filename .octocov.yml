@@ -1,0 +1,39 @@
+coverage:
+  paths:
+    - coverage/lcov.info # Path to your coverage file
+  acceptable: 50% # Minimum acceptable coverage
+  badge:
+    path: coverage.svg
+
+diff:
+  acceptable: 5% # Acceptable coverage decrease
+
+comment:
+  if: is_pull_request
+  hideFooter: true
+  template: |
+    ## 📊 Code Coverage Report
+
+    | Metric | Value |
+    |--------|-------|
+    | **Total Coverage** | {{ .Coverage.Percent }}% |
+    {{ if .Diff }}| **Diff Coverage** | {{ .Diff.Percent }}% |{{ end }}
+    | **Acceptable** | {{ .CoverageAcceptable }}% |
+
+    {{ if lt .Coverage.Percent .CoverageAcceptable }}
+    ⚠️ **Coverage is below acceptable threshold**
+    {{ else }}
+    ✅ **Coverage meets requirements**
+    {{ end }}
+
+    {{ if .Changed }}
+    ### 📁 Changed Files Coverage
+    {{ range .Changed }}
+    - `{{ .File }}`: {{ .Percent }}%
+    {{ end }}
+    {{ end }}
+
+report:
+  if: env.GITHUB_REF == 'refs/heads/main'
+  datastores:
+    - artifact://coverage-report
