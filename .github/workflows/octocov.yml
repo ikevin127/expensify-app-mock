@@ -31,6 +31,17 @@ jobs:
         env:
           CI: true
 
+      - name: Verify coverage files
+        run: |
+          echo "Checking coverage directory..."
+          ls -la coverage/ || echo "Coverage directory not found"
+          if [ -f coverage/lcov.info ]; then
+            echo "LCOV file found:"
+            head -n 20 coverage/lcov.info
+          else
+            echo "LCOV file not found"
+          fi
+
       - name: Run octocov
         uses: k1LoW/octocov-action@v1
         with:
