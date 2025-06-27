@@ -1,4 +1,4 @@
-name: Code Coverage w/ Octocov
+name: Code Coverage Octocov
 
 on:
   pull_request:

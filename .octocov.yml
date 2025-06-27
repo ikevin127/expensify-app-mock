@@ -23,7 +23,6 @@ diff:
     - coverage/lcov.info
   datastores:
     - github://ikevin127/expensify-app-mock/coverage
-  acceptable: 5%
 
 report:
   paths:
