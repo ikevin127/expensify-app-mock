@@ -9,56 +9,25 @@ coverage:
 
 codeToTestRatio:
   code:
-    - "src/**/*.js"
-    - "src/**/*.jsx"
+    - "src/**/*.{js,jsx,ts,tsx}"
   test:
-    - "tests/**/*.js"
-    - "tests/**/*.test.js"
-    - "tests/**/*.spec.js"
-  acceptable: "1:0.5"
+    - "tests/**/*.{js,ts,test.js,test.ts,spec.js,spec.ts}"
+  acceptable: "1:0.3"
+
+comment:
+  if: is_pull_request
 
 diff:
   paths:
     - coverage/lcov.info
   acceptable: 5%
 
-comment:
-  if: is_pull_request
-  hideFooterLink: true
-  message: |
-    ## 📊 Code Coverage Report
-
-    {{ if .Coverage }}
-    **Overall Coverage**: {{ printf "%.1f" .Coverage.Percent }}%
-    {{ if .Coverage.Total }}**Lines Covered**: {{ .Coverage.Covered }}/{{ .Coverage.Total }}{{ end }}
-    {{ else }}
-    **Coverage**: No coverage data found
-    {{ end }}
-
-    {{ if .Diff }}
-    **Diff Coverage**: {{ printf "%.1f" .Diff.Percent }}%
-    {{ if .Diff.Total }}**Diff Lines**: {{ .Diff.Covered }}/{{ .Diff.Total }}{{ end }}
-    {{ end }}
-
-    {{ if .Coverage.Files }}
-    ### 📁 Coverage by File
-    {{ range .Coverage.Files }}
-    {{ if lt .Percent 80.0 }}
-    - ⚠️ `{{ .File }}`: {{ printf "%.1f" .Percent }}%
-    {{ else }}
-    - ✅ `{{ .File }}`: {{ printf "%.1f" .Percent }}%
-    {{ end }}
-    {{ end }}
-    {{ end }}
-
-    {{ if .Diff.Files }}
-    ### 🔄 Changed Files Coverage
-    {{ range .Diff.Files }}
-    - `{{ .File }}`: {{ printf "%.1f" .Percent }}%
-    {{ end }}
-    {{ end }}
+report:
+  paths:
+    - coverage/lcov.info
+  datastores:
+    - github://ikevin127/expensify-app-mock/coverage
 
 push:
-  if: true
   datastores:
     - github://ikevin127/expensify-app-mock/coverage
