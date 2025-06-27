@@ -94,31 +94,6 @@ const ExpenseManager = () => {
     return sorted;
   };
 
-  // New uncovered functionality - export expenses
-  const exportExpensesToCSV = () => {
-    const headers = 'Title,Amount,Category,Date,Description\n';
-    const csvData = expenses.map(expense => 
-      `${expense.title},${expense.amount},${expense.category},${expense.date.toISOString()},${expense.description || ''}`
-    ).join('\n');
-    
-    const csvContent = headers + csvData;
-    console.log('CSV Export:', csvContent);
-    Alert.alert('Export Complete', 'Expenses exported to console');
-  };
-
-  // New uncovered functionality - calculate category totals
-  const getCategoryTotals = () => {
-    const categoryTotals = {};
-    expenses.forEach(expense => {
-      if (categoryTotals[expense.category]) {
-        categoryTotals[expense.category] += expense.amount;
-      } else {
-        categoryTotals[expense.category] = expense.amount;
-      }
-    });
-    return categoryTotals;
-  };
-
   const renderExpenseItem = ({ item }) => (
     <ExpenseItem
       expense={item}

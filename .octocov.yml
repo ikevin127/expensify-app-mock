@@ -1,39 +1,36 @@
 coverage:
   paths:
-    - coverage/lcov.info # Path to your coverage file
-  acceptable: 50% # Minimum acceptable coverage
-  badge:
-    path: coverage.svg
+    - coverage/lcov.info
+  acceptable: 70%
+  exclude:
+    - "tests/**/*"
+    - "**/*.test.js"
+    - "node_modules/**/*"
 
-diff:
-  acceptable: 5% # Acceptable coverage decrease
+codeToTestRatio:
+  code:
+    - "src/**/*.{js,jsx,ts,tsx}"
+  test:
+    - "tests/**/*.{js,ts,test.js,test.ts,spec.js,spec.ts}"
+  acceptable: "1:0.3"
 
 comment:
   if: is_pull_request
-  hideFooter: true
-  template: |
-    ## 📊 Code Coverage Report
+  deletePrevious: true
 
-    | Metric | Value |
-    |--------|-------|
-    | **Total Coverage** | {{ .Coverage.Percent }}% |
-    {{ if .Diff }}| **Diff Coverage** | {{ .Diff.Percent }}% |{{ end }}
-    | **Acceptable** | {{ .CoverageAcceptable }}% |
-
-    {{ if lt .Coverage.Percent .CoverageAcceptable }}
-    ⚠️ **Coverage is below acceptable threshold**
-    {{ else }}
-    ✅ **Coverage meets requirements**
-    {{ end }}
-
-    {{ if .Changed }}
-    ### 📁 Changed Files Coverage
-    {{ range .Changed }}
-    - `{{ .File }}`: {{ .Percent }}%
-    {{ end }}
-    {{ end }}
+diff:
+  paths:
+    - coverage/lcov.info
+  datastores:
+    - github://ikevin127/expensify-app-mock/coverage
+  acceptable: 5%
 
 report:
-  if: env.GITHUB_REF == 'refs/heads/main'
+  paths:
+    - coverage/lcov.info
   datastores:
-    - artifact://coverage-report
+    - github://ikevin127/expensify-app-mock/coverage
+
+push:
+  datastores:
+    - github://ikevin127/expensify-app-mock/coverage
