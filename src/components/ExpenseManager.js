@@ -14,6 +14,8 @@ const ExpenseManager = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [filterCategory, setFilterCategory] = useState('All');
+  const [sortOrder, setSortOrder] = useState('newest');
 
   useEffect(() => {
     loadExpenses();
@@ -67,6 +69,21 @@ const ExpenseManager = () => {
         { text: 'Delete', style: 'destructive', onPress: () => deleteExpense(expenseId) }
       ]
     );
+  };
+
+  // New uncovered functionality - sorting expenses
+  const sortExpenses = (expenseList, order) => {
+    const sorted = [...expenseList];
+    if (order === 'newest') {
+      return sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (order === 'oldest') {
+      return sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (order === 'highest') {
+      return sorted.sort((a, b) => b.amount - a.amount);
+    } else if (order === 'lowest') {
+      return sorted.sort((a, b) => a.amount - b.amount);
+    }
+    return sorted;
   };
 
   const renderExpenseItem = ({ item }) => (
