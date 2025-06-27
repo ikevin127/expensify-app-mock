@@ -1,8 +1,11 @@
 coverage:
   paths:
     - coverage/lcov.info
-  acceptable: 10%
-  if: true
+  acceptable: 70%
+  exclude:
+    - 'tests/**/*'
+    - '**/*.test.js'
+    - 'node_modules/**/*'
 
 codeToTestRatio:
   code:
@@ -16,20 +19,65 @@ codeToTestRatio:
   if: true
 
 diff:
+  paths:
+    - coverage/lcov.info
   acceptable: 5%
 
 comment:
   if: is_pull_request
   hideFooterLink: true
+# octocov configuration for Expensify/App
+coverage:
+  paths:
+    - coverage/lcov.info  # Path to your coverage file
+  acceptable: 70%         # Minimum acceptable coverage percentage
+  badge:
+    path: coverage.svg    # Optional: generate coverage badge
+
+# Diff coverage configuration
+diff:
+  paths:
+    - coverage/lcov.info
+  acceptable: 5%          # Acceptable coverage decrease in diff
+
+# Comment configuration for PR comments
+comment:
+  if: is_pull_request
+  hideFooterLink: true       # Set to true to hide octocov footer
   message: |
-    ## 🏆 Code Coverage Report
+    ## Code Coverage Report
+    
+    **Overall Coverage**: {{ .Coverage.Percent }}%
+    {{- if .Coverage.Total }}
+    **Lines Covered**: {{ .Coverage.Covered }}/{{ .Coverage.Total }}
+    {{- end }}
+    
+    {{- if .Diff }}
+    **Diff Coverage**: {{ .Diff.Percent }}%
+    {{- if .Diff.Total }}
+    **Diff Lines Covered**: {{ .Diff.Covered }}/{{ .Diff.Total }}
+    {{- end }}
+    {{- end }}
+    
+    {{- if .Coverage.Files }}
+    ### Coverage by File
+    {{- range .Coverage.Files }}
+    {{- if lt .Percent 80.0 }}
+    - ⚠️ `{{ .File }}`: {{ .Percent }}%
+    {{- else }}
+    - ✅ `{{ .File }}`: {{ .Percent }}%
+    {{- end }}
+    {{- end }}
+    {{- end }}
+    
+    {{- if .Diff.Files }}
+    ### Changed Files Coverage
+    {{- range .Diff.Files }}
+    - `{{ .File }}`: {{ .Percent }}%
+    {{- end }}
+    {{- end }}
 
-    **Coverage:** {{ .Coverage.Percentage }}%
-    **Total Lines:** {{ .Coverage.Total }}
-    **Covered Lines:** {{ .Coverage.Covered }}
-    **Code to Test Ratio:** {{ .CodeToTestRatio.Ratio }}
-
-report:
+push:
   if: true
   datastores:
-    - artifact://${GITHUB_REPOSITORY}
+    - github://ikevin127/expensify-app-mock/coverage

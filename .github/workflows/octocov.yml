@@ -1,4 +1,4 @@
-name: Code Coverage with octocov
+name: Code Coverage w/ Octocov
 
 on:
   pull_request:
@@ -30,7 +30,6 @@ jobs:
         run: |
           echo "Running tests with coverage..."
           npm run test:ci || echo "Tests may have failed but continuing..."
-          echo "Test command completed"
         env:
           CI: true
 
