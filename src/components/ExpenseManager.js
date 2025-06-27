@@ -14,6 +14,8 @@ const ExpenseManager = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [filterCategory, setFilterCategory] = useState('All');
+  const [sortOrder, setSortOrder] = useState('newest');
 
   useEffect(() => {
     loadExpenses();
@@ -68,7 +70,7 @@ const ExpenseManager = () => {
       ]
     );
   };
-
+  
   const renderExpenseItem = ({ item }) => (
     <ExpenseItem
       expense={item}
