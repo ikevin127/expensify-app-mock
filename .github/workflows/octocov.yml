@@ -1,4 +1,4 @@
-name: Code Coverage w/ Octocov
+name: Octocov
 
 on:
   pull_request:
@@ -29,19 +29,13 @@ jobs:
       - name: Run tests with coverage
         run: |
           echo "Running tests with coverage..."
-          npm run test -- --coverage --ci --coverageReporters=lcov --watchAll=false --passWithNoTests
+          npm run test --coverage --ci --coverageReporters=lcov --coverageReporters=json-summary --watchAll=false --passWithNoTests
           echo "Coverage files generated:"
           ls -la coverage/ || echo "No coverage directory found"
-          if [ -f "coverage/lcov.info" ]; then
-            echo "lcov.info found, size: $(wc -l < coverage/lcov.info) lines"
-            head -20 coverage/lcov.info
-          else
-            echo "❌ lcov.info not found!"
-          fi
         env:
           CI: true
 
-      - name: Run octocov
+      - name: Run Octocov
         uses: k1LoW/octocov-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
