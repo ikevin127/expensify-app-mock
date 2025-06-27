@@ -94,6 +94,19 @@ const ExpenseManager = () => {
     return sorted;
   };
 
+  // New uncovered functionality - calculate category totals
+  const getCategoryTotals = () => {
+    const categoryTotals = {};
+    expenses.forEach(expense => {
+      if (categoryTotals[expense.category]) {
+        categoryTotals[expense.category] += expense.amount;
+      } else {
+        categoryTotals[expense.category] = expense.amount;
+      }
+    });
+    return categoryTotals;
+  };
+
   const renderExpenseItem = ({ item }) => (
     <ExpenseItem
       expense={item}

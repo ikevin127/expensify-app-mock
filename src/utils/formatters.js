@@ -184,6 +184,18 @@ export const calculateExpenseStats = (expenses) => {
 };
 
 /**
+ * Format expense category for display (uncovered function)
+ * @param {string} category - The category string
+ * @returns {string} Formatted category
+ */
+export const formatCategoryDisplay = (category) => {
+  if (!category || typeof category !== 'string') {
+    return 'Uncategorized';
+  }
+  return category.replace(/&/g, 'and').toUpperCase();
+};
+
+/**
  * Generate expense report summary (uncovered function)
  * @param {Array} expenses - Array of expense objects
  * @param {string} period - Period type ('week', 'month', 'year')
