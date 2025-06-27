@@ -16,6 +16,7 @@ codeToTestRatio:
 
 comment:
   if: is_pull_request
+  deletePrevious: true
 
 diff:
   paths:
