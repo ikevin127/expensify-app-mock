@@ -24,7 +24,7 @@ diff:
     - coverage/lcov.info
     - coverage/coverage-summary.json
   datastores:
-    - github://coverage
+    - artifact://ikevin127/expensify-app-mock
   acceptable: 5%
 
 report:
@@ -32,8 +32,8 @@ report:
     - coverage/lcov.info
     - coverage/coverage-summary.json
   datastores:
-    - github://coverage
+    - artifact://ikevin127/expensify-app-mock
 
 push:
   datastores:
-    - github://coverage
+    - artifact://ikevin127/expensify-app-mock
