@@ -31,7 +31,7 @@ jobs:
           echo "Running tests with coverage..."
           npm run test --coverage --ci --coverageReporters=lcov --coverageReporters=json-summary --watchAll=false --passWithNoTests
           echo "Coverage files generated:"
-          ls -la coverage/ || echo "No coverage directory found"
+          ls -la coverage || echo "No coverage directory found"
         env:
           CI: true
 
