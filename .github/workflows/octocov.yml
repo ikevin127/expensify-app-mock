@@ -34,11 +34,6 @@ jobs:
         env:
           CI: true
 
-      - name: Verify coverage files
-        run: |
-          echo "Checking current directory contents:"
-          ls -la
-
       - name: Run octocov
         uses: k1LoW/octocov-action@v1
         with:

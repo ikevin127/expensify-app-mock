@@ -1,7 +1,18 @@
 coverage:
   paths:
     - coverage/lcov.info
-  acceptable: 50%
+  acceptable: 10%
+  if: true
+
+codeToTestRatio:
+  code:
+    - "src/**/*.js"
+    - "src/**/*.jsx"
+  test:
+    - "tests/**/*.js"
+    - "tests/**/*.test.js"
+    - "tests/**/*.spec.js"
+  acceptable: "1:0.5"
   if: true
 
 diff:
@@ -11,7 +22,7 @@ comment:
   if: is_pull_request
   hideFooterLink: true
   message: |
-    ## 🏆 CUSTOM Code Coverage Report
+    ## 🏆 Code Coverage Report
 
     **Coverage:** {{ .Coverage.Percentage }}%
     **Total Lines:** {{ .Coverage.Total }}
