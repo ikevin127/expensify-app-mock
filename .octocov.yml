@@ -1,18 +1,7 @@
 coverage:
   paths:
     - coverage/lcov.info
-  acceptable: 10%
-  if: true
-
-codeToTestRatio:
-  code:
-    - "src/**/*.js"
-    - "src/**/*.jsx"
-  test:
-    - "tests/**/*.js"
-    - "tests/**/*.test.js"
-    - "tests/**/*.spec.js"
-  acceptable: "1:0.5"
+  acceptable: 50%
   if: true
 
 diff:
@@ -20,18 +9,16 @@ diff:
 
 comment:
   if: is_pull_request
-  hideFooter: true
-  template: |
+  hideFooterLink: true
+  message: |
     ## 🏆 CUSTOM Code Coverage Report
-    
+
     **Coverage:** {{ .Coverage.Percentage }}%
     **Total Lines:** {{ .Coverage.Total }}
     **Covered Lines:** {{ .Coverage.Covered }}
     **Code to Test Ratio:** {{ .CodeToTestRatio.Ratio }}
-    
-    This is a custom template to verify it's working!
 
 report:
   if: true
   datastores:
-    - artifact://coverage-report
+    - artifact://${GITHUB_REPOSITORY}
