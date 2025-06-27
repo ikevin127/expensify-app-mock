@@ -1,7 +1,6 @@
 coverage:
   paths:
     - coverage/lcov.info
-    - coverage/coverage-summary.json
   acceptable: 70%
   exclude:
     - "tests/**/*"
@@ -22,18 +21,15 @@ comment:
 diff:
   paths:
     - coverage/lcov.info
-    - coverage/coverage-summary.json
   datastores:
-    - github://coverage
-  acceptable: 5%
+    - github://ikevin127/expensify-app-mock
 
 report:
   paths:
     - coverage/lcov.info
-    - coverage/coverage-summary.json
   datastores:
-    - github://coverage
+    - github://ikevin127/expensify-app-mock
 
 push:
   datastores:
-    - github://coverage
+    - github://ikevin127/expensify-app-mock

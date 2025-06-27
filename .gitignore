@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Coverage reports
-coverage/
+coverage
 *.lcov
 
 # Runtime data
