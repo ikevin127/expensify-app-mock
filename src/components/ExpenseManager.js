@@ -70,22 +70,7 @@ const ExpenseManager = () => {
       ]
     );
   };
-
-  // New uncovered functionality - sorting expenses
-  const sortExpenses = (expenseList, order) => {
-    const sorted = [...expenseList];
-    if (order === 'newest') {
-      return sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if (order === 'oldest') {
-      return sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if (order === 'highest') {
-      return sorted.sort((a, b) => b.amount - a.amount);
-    } else if (order === 'lowest') {
-      return sorted.sort((a, b) => a.amount - b.amount);
-    }
-    return sorted;
-  };
-
+  
   const renderExpenseItem = ({ item }) => (
     <ExpenseItem
       expense={item}
