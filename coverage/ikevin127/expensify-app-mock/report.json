@@ -1,12 +1,12 @@
 {
   "repository": "ikevin127/expensify-app-mock",
   "ref": "refs/pull/19/merge",
-  "commit": "811f3c453387be47a419a282564968a62d25bbad",
+  "commit": "f5c204e96a8ee250ce34c1b5591f58e1b7d4e924",
   "coverage": {
     "type": "loc",
     "format": "LCOV",
-    "total": 227,
-    "covered": 138,
+    "total": 195,
+    "covered": 135,
     "files": [
       {
         "type": "loc",
@@ -137,8 +137,8 @@
       {
         "type": "loc",
         "file": "src/components/ExpenseManager.js",
-        "total": 57,
-        "covered": 32,
+        "total": 46,
+        "covered": 31,
         "blocks": [
           {
             "type": "loc",
@@ -358,15 +358,15 @@
           },
           {
             "type": "loc",
-            "start_line": 75,
-            "end_line": 75,
+            "start_line": 74,
+            "end_line": 74,
             "count": 27
           },
           {
             "type": "loc",
-            "start_line": 76,
-            "end_line": 76,
-            "count": 0
+            "start_line": 75,
+            "end_line": 75,
+            "count": 19
           },
           {
             "type": "loc",
@@ -376,110 +376,44 @@
           },
           {
             "type": "loc",
-            "start_line": 78,
-            "end_line": 78,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 79,
-            "end_line": 79,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 80,
-            "end_line": 80,
-            "count": 0
-          },
-          {
-            "type": "loc",
             "start_line": 81,
             "end_line": 81,
-            "count": 0
+            "count": 27
           },
           {
             "type": "loc",
             "start_line": 82,
             "end_line": 82,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 83,
-            "end_line": 83,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 84,
-            "end_line": 84,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 86,
-            "end_line": 86,
-            "count": 0
+            "count": 16
           },
           {
             "type": "loc",
             "start_line": 89,
             "end_line": 89,
-            "count": 27
-          },
-          {
-            "type": "loc",
-            "start_line": 90,
-            "end_line": 90,
-            "count": 19
-          },
-          {
-            "type": "loc",
-            "start_line": 92,
-            "end_line": 92,
-            "count": 0
+            "count": 11
           },
           {
             "type": "loc",
             "start_line": 96,
             "end_line": 96,
-            "count": 27
-          },
-          {
-            "type": "loc",
-            "start_line": 97,
-            "end_line": 97,
-            "count": 16
+            "count": 3
           },
           {
             "type": "loc",
             "start_line": 104,
             "end_line": 104,
-            "count": 11
-          },
-          {
-            "type": "loc",
-            "start_line": 111,
-            "end_line": 111,
-            "count": 3
-          },
-          {
-            "type": "loc",
-            "start_line": 119,
-            "end_line": 119,
             "count": 19
           },
           {
             "type": "loc",
-            "start_line": 129,
-            "end_line": 129,
+            "start_line": 114,
+            "end_line": 114,
             "count": 0
           },
           {
             "type": "loc",
-            "start_line": 136,
-            "end_line": 136,
+            "start_line": 121,
+            "end_line": 121,
             "count": 2
           }
         ]
@@ -973,8 +907,8 @@
       {
         "type": "loc",
         "file": "src/utils/formatters.js",
-        "total": 76,
-        "covered": 57,
+        "total": 55,
+        "covered": 55,
         "blocks": [
           {
             "type": "loc",
@@ -1305,139 +1239,13 @@
             "start_line": 145,
             "end_line": 145,
             "count": 3
-          },
-          {
-            "type": "loc",
-            "start_line": 153,
-            "end_line": 153,
-            "count": 3
-          },
-          {
-            "type": "loc",
-            "start_line": 154,
-            "end_line": 154,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 155,
-            "end_line": 155,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 163,
-            "end_line": 163,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 164,
-            "end_line": 164,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 166,
-            "end_line": 166,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 180,
-            "end_line": 180,
-            "count": 3
-          },
-          {
-            "type": "loc",
-            "start_line": 181,
-            "end_line": 181,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 184,
-            "end_line": 184,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 186,
-            "end_line": 186,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 187,
-            "end_line": 187,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 188,
-            "end_line": 188,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 190,
-            "end_line": 190,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 191,
-            "end_line": 191,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 192,
-            "end_line": 192,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 194,
-            "end_line": 194,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 195,
-            "end_line": 195,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 198,
-            "end_line": 198,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 199,
-            "end_line": 199,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 200,
-            "end_line": 200,
-            "count": 0
-          },
-          {
-            "type": "loc",
-            "start_line": 203,
-            "end_line": 203,
-            "count": 0
           }
         ]
       }
     ]
   },
   "code_to_test_ratio": {
-    "code": 682,
+    "code": 624,
     "test": 380,
     "code_files": [
       {
@@ -1462,9 +1270,9 @@
         "language": "JavaScript"
       },
       {
-        "code": 153,
-        "comment": 5,
-        "blank": 15,
+        "code": 140,
+        "comment": 4,
+        "blank": 14,
         "path": "src/components/ExpenseManager.js",
         "language": "JavaScript"
       },
@@ -1490,9 +1298,9 @@
         "language": "JavaScript"
       },
       {
-        "code": 129,
-        "comment": 54,
-        "blank": 26,
+        "code": 84,
+        "comment": 43,
+        "blank": 19,
         "path": "src/utils/formatters.js",
         "language": "JavaScript"
       }
@@ -1528,6 +1336,6 @@
       }
     ]
   },
-  "test_execution_time": 17000000000,
-  "timestamp": "2025-06-27T04:55:15.366610005Z"
+  "test_execution_time": 16000000000,
+  "timestamp": "2025-06-27T05:01:47.179275421Z"
 }
