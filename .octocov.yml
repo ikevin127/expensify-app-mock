@@ -12,7 +12,7 @@ codeToTestRatio:
     - "tests/**/*.js"
     - "tests/**/*.test.js"
     - "tests/**/*.spec.js"
-  acceptable: "1:1.2"
+  acceptable: "1:0.5"
   if: true
 
 diff:

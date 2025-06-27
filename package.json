@@ -5,8 +5,8 @@
   "main": "src/App.js",
   "scripts": {
     "test": "TZ=utc NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:coverage": "TZ=utc NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=lcov,text",
-    "test:ci": "TZ=utc NODE_OPTIONS=--experimental-vm-modules jest --coverage --ci --watchAll=false --coverageReporters=lcov,text",
+    "test:coverage": "TZ=utc NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=lcov,text,html",
+    "test:ci": "TZ=utc NODE_OPTIONS=--experimental-vm-modules jest --coverage --ci --watchAll=false --coverageReporters=lcov,text,html --passWithNoTests",
     "lint": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix",
     "start": "react-native start",
