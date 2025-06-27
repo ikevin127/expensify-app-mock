@@ -29,14 +29,12 @@ comment:
     | **Coverage** | {{ .Coverage.Percentage }}% |
     | **Code Lines** | {{ .Coverage.Total }} |
     | **Covered Lines** | {{ .Coverage.Covered }} |
-    {{- if .CodeToTestRatio }}
-    | **Code to Test Ratio** | {{ .CodeToTestRatio.Ratio }} |
-    {{- end }}
+    {% if .CodeToTestRatio %}| **Code to Test Ratio** | {{ .CodeToTestRatio.Ratio }} |{% endif %}
 
-    {{- if .Coverage.Diff }}
-    ### 📈 Coverage Changes
-    {{ .Coverage.Diff }}
-    {{- end }}
+    {% if .Coverage.Percentage < 50 %}⚠️ **Coverage is below the 50% threshold**{% else %}✅ **Coverage meets requirements**{% endif %}
+
+    {% if .Coverage.Diff %}### 📈 Coverage Changes
+    {{ .Coverage.Diff }}{% endif %}
 
 report:
   if: always

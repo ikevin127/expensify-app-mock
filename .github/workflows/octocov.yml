@@ -27,19 +27,31 @@ jobs:
         run: npm ci
 
       - name: Run tests with coverage
-        run: npm run test:ci
+        run: |
+          echo "Running tests with coverage..."
+          npm run test:ci
+          echo "Test command completed with exit code: $?"
         env:
           CI: true
 
       - name: Verify coverage files
         run: |
-          echo "Checking coverage directory..."
-          ls -la coverage/ || echo "Coverage directory not found"
-          if [ -f coverage/lcov.info ]; then
-            echo "LCOV file found:"
-            head -n 20 coverage/lcov.info
+          echo "Checking current directory contents:"
+          ls -la
+          echo "\nChecking for coverage directory..."
+          if [ -d coverage ]; then
+            echo "Coverage directory found:"
+            ls -la coverage/
+            if [ -f coverage/lcov.info ]; then
+              echo "\nLCOV file contents (first 20 lines):"
+              head -n 20 coverage/lcov.info
+              echo "\nLCOV file size:"
+              wc -l coverage/lcov.info
+            else
+              echo "LCOV file not found in coverage directory"
+            fi
           else
-            echo "LCOV file not found"
+            echo "Coverage directory not found"
           fi
 
       - name: Run octocov
