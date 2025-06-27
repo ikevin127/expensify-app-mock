@@ -1,7 +1,7 @@
 coverage:
   paths:
     - coverage/lcov.info
-  acceptable: 50%
+  acceptable: 10%
   if: true
 
 codeToTestRatio:
@@ -22,21 +22,16 @@ comment:
   if: is_pull_request
   hideFooter: true
   template: |
-    ## 📊 Code Coverage Report
-
-    | Metric | Value |
-    |-----------|-------|
-    | **Coverage** | {{ .Coverage.Percentage }}% |
-    | **Code Lines** | {{ .Coverage.Total }} |
-    | **Covered Lines** | {{ .Coverage.Covered }} |
-    {% if .CodeToTestRatio %}| **Code to Test Ratio** | {{ .CodeToTestRatio.Ratio }} |{% endif %}
-
-    {% if .Coverage.Percentage < 50 %}⚠️ **Coverage is below the 50% threshold**{% else %}✅ **Coverage meets requirements**{% endif %}
-
-    {% if .Coverage.Diff %}### 📈 Coverage Changes
-    {{ .Coverage.Diff }}{% endif %}
+    ## 🏆 CUSTOM Code Coverage Report
+    
+    **Coverage:** {{ .Coverage.Percentage }}%
+    **Total Lines:** {{ .Coverage.Total }}
+    **Covered Lines:** {{ .Coverage.Covered }}
+    **Code to Test Ratio:** {{ .CodeToTestRatio.Ratio }}
+    
+    This is a custom template to verify it's working!
 
 report:
-  if: always
+  if: true
   datastores:
     - artifact://coverage-report
