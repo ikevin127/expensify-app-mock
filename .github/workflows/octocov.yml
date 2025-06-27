@@ -29,7 +29,15 @@ jobs:
       - name: Run tests with coverage
         run: |
           echo "Running tests with coverage..."
-          npm run test:ci || echo "Tests may have failed but continuing..."
+          TZ=utc NODE_OPTIONS=--experimental-vm-modules jest -- --coverage --ci --coverageReporters=lcov --watchAll=false --passWithNoTests
+          echo "Coverage files generated:"
+          ls -la coverage/ || echo "No coverage directory found"
+          if [ -f "coverage/lcov.info" ]; then
+            echo "lcov.info found, size: $(wc -l < coverage/lcov.info) lines"
+            head -20 coverage/lcov.info
+          else
+            echo "❌ lcov.info not found!"
+          fi
         env:
           CI: true
 
